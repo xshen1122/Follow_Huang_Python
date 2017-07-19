@@ -23,6 +23,10 @@ print formatter1 % (str1,'two','three','four')
 print 'for \' we need \\,for \", we need \\, for /, we dont need \\'
 
 # 从键盘读取输入
-print '请输入你的性别'
+print 'Please input your gender, Female or Male?', #在这里加了一个逗号，光标不会跑到下一行
 gender = raw_input()
 print gender
+
+# 或者可以在raw_input()里面给出提示
+name = raw_input('Please input your Name')
+print name
