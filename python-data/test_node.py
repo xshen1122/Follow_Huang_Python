@@ -42,8 +42,13 @@ class Node(object):
 		self.nextp = None # 注意nextp不能作为私有，因为LinkedList还需要调用。
 
 class LinkedList(object):
-	def __init__(self):
-		self.head = None 
+	# python的类不支持多个__init__,通过默认参数或者可变参数来实现__init__的多态
+	def __init__(self,list1=[]):
+		self.head = None
+		if list1 != []:
+			for data in list1:
+				self.append(data)
+
 	def __str__(self):
 		pre = self.head # 这里不对self.head直接操作是有理由的，不然self.head就挪位置了
 		result = str(pre.data) 
@@ -108,12 +113,16 @@ if __name__ == '__main__':
 	llist.append('a')
 	llist.append('b')
 	llist.append('c')
-	print str(llist)
-	print len(llist)
+
 	llist.append('d')
 
-	print len(llist)
 	llist.insert(1,'e')
 	print str(llist)
+
+
+	list1 = [1,2,3,4]
+	llist1 = LinkedList(list1)
+	print str(llist1)
+
 
 
