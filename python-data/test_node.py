@@ -35,6 +35,16 @@ __getitem__:返回某个位置上的量，返回的是data
 insert(index, obj):在某个位置上插入, 还是老办法，移动指针到指定位置上，将pre.nextp 指向新加的数据，并用temp
 保存index之后的数据，最后将新加入的Node的nextp指向temp
 
+以上为单向链表
+
+还有其他链表形式:
+1. 静态链表
+2. 循环链表
+将Tail的指针指向Head
+3. 双向链表
+用空间来换取时间
+
+
 '''
 class Node(object):
 	def __init__(self,data):
@@ -58,6 +68,9 @@ class LinkedList(object):
 			result = result +  ' , ' + str(pre.nextp.data) 
 			pre= pre.nextp  # 指向下一个Node
 		return result
+	def clear(self):
+		self.head = None
+
 	def insert(self,index, data):
 		pre = self.head
 		for i in range(index-1):
@@ -123,6 +136,9 @@ if __name__ == '__main__':
 	list1 = [1,2,3,4]
 	llist1 = LinkedList(list1)
 	print str(llist1)
+
+	llist1.clear()
+	print len(llist1)
 
 
 
