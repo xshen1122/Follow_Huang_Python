@@ -189,3 +189,4 @@ with最多的 就是打开文件，和实现__enter__和__exit__
 with open(r'somefileName') as somefile:
     for line in somefile:
         print line
+
