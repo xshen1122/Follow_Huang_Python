@@ -15,11 +15,13 @@ def checkZhiNumber(number):
 		if number%i == 0:
 			return False
 	return True
-number = 2
-zhi_list = []
-while len(zhi_list)<10001:
-	if checkZhiNumber(number):
-		zhi_list.append(number)
-	number += 1
+if __name__ == '__main__':
+	
+	number = 2
+	zhi_list = []
+	while len(zhi_list)<10001:
+		if checkZhiNumber(number):
+			zhi_list.append(number)
+		number += 1
 
-print '10001st prime number is ' , zhi_list[-1]
+	print '10001st prime number is ' , zhi_list[-1]
