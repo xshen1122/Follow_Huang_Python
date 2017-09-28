@@ -47,3 +47,18 @@ if __name__ == '__main__':
 			word_dir.setdefault(item,1)
 
 	print sorted(word_dir.items(),key=lambda d: d[1],reverse=True) # This is sorting
+
+	# dict setdefault() is very good.
+	'''
+	使用 setdefault 方法相当于如下的操作：
+
+	if key in dict:
+	 reurn dict[key]
+	else:
+	 dict[key] = default
+	 return default
+
+
+
+
+	'''
