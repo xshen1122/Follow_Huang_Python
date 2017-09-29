@@ -36,6 +36,10 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 1. 从grid.txt获取grid列表，这里的难点在于将20x20的网格变化为一个二维列表
 2. 横方向的四个乘积比较好算f[n]*f[n+1]*f[n+2]*f[n+3], n 从0开始，一直到n+3 = len（f）-1， n=len（f）-4
 
+其他考虑点
+横方向的line，colomn存储还没完全想好
+竖方向的可以先将矩阵倒置后（line，colomn互换，直接调用横方向的函数）
+斜方向的也不简单。需要配成多个list(（难点在于每个list的长度不同）)
 '''
 class Grid():
 	def __init__(self,filename):
