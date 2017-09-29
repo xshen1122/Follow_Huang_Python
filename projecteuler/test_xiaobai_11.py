@@ -1,5 +1,6 @@
 # test_xiaobai_11.py
 # coding: utf-8
+import copy
 '''
 
 
@@ -40,11 +41,16 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 横方向的line，colomn存储还没完全想好
 竖方向的可以先将矩阵倒置后（line，colomn互换，直接调用横方向的函数）
 斜方向的也不简单。需要配成多个list(（难点在于每个list的长度不同）)
+
+如果想保留原来的矩阵，需要用copy.deepcopy(list1),否则直接赋值是无法保留原来的值。(也会更新到新的矩阵）
+
+
 '''
 class Grid():
 	def __init__(self,filename):
 		self.filename = filename
 		self.grid_whole_list = []
+		self.origin_grid_whole_list = []
 	def getGridList(self):
 
 		myfile = open(self.filename,'r')
@@ -60,30 +66,61 @@ class Grid():
 				
 				grid_number_list.append(int(grid_list[i][j]))
 			self.grid_whole_list.append(grid_number_list)
+		self.origin_grid_whole_list = copy.deepcopy(self.grid_whole_list)
+	def getVGridList(self):
+		
+
+		for i in range(len(self.grid_whole_list)):
+			for j in range(i+1, len(self.grid_whole_list)):
+				temp=self.grid_whole_list[i][j]
+				self.grid_whole_list[i][j]=self.grid_whole_list[j][i]
+				self.grid_whole_list[j][i]=temp
+		
+		
 
 	def checkHorizon(self):
 		line_dict = {}
 		for line in range(len(self.grid_whole_list)):
 			grid_dict={}
-			
+			whole_list=[]
 			item = self.grid_whole_list[line]
 			for n in range(0,len(item)-3):
 				grid_dict.setdefault(n,item[n]*item[n+1]*item[n+2]*item[n+3])
-			print '------------------------------------------------------'
-			raw_list.append(sorted(grid_dict.items(),key=lambda d: d[1],reverse=True)[0][0])
-			line_dict.setdefault(line,(sorted(grid_dict.items(),key=lambda d: d[1],reverse=True)[0][1]))
-		
-		print 'line', sorted(line_dict.items(),key=lambda d: d[1],reverse=True)[0]
+			# print '------------------------------------------------------'
+			# print line
+			raw = sorted(grid_dict.items(),key=lambda d: d[1],reverse=True)[0][0]
+			# print raw
+			value = sorted(grid_dict.items(),key=lambda d: d[1],reverse=True)[0][1]
+			# print value
+
+
+			 
+			line_dict.setdefault(line,[raw, value])
+		# print line_dict	
+		# print sorted(line_dict.items(),key=lambda d: d[1][1],reverse=True)
+		return sorted(line_dict.items(),key=lambda d: d[1][1],reverse=True)[0]
+		'''
+		哈哈，做出来了，把行和列的信息都存在字典里。
+		字典的value可以放一个list
+		最后算出横向最大的数为(8,[10,48477312])，就是第8行（从0开始），第10列（从0开始）
+		'''
 
 	def checkVertical(self):
-		pass
+		
+		self.getVGridList()
+		
+		ss = self.checkHorizon()
+		return ss
+
 
 	def checkDiagonal(self):
 		pass
 	def process(self):
 		self.getGridList()
-		self.checkHorizon()
-		self.checkVertical()
+		print self.checkHorizon()
+		print '-----over-----'
+		print self.checkVertical()
+
 		self.checkDiagonal()
 
 
@@ -91,4 +128,7 @@ class Grid():
 if __name__ == '__main__':
 	test = Grid('grid.txt')
 	test.process()
+	print test.origin_grid_whole_list
+	print test.grid_whole_list
+	print 66*91*88*97
 	
