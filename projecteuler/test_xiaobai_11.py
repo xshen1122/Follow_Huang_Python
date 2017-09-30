@@ -76,7 +76,9 @@ class Grid():
 				self.grid_whole_list[i][j]=self.grid_whole_list[j][i]
 				self.grid_whole_list[j][i]=temp
 		
+	def getDiagGridList(self):
 		
+
 
 	def checkHorizon(self):
 		line_dict = {}
