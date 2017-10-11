@@ -67,15 +67,19 @@ class Poker:
 				tmp_list.append(item)
 		tmp_tmp_list = sorted(tmp_list)
 		return tmp_tmp_list
+
 	def processNumberList(self):
 		self.sorted_number_list1 = self.changeSort(self.number_list1)
 		self.sorted_number_list2 = self.changeSort(self.number_list2)
+
+
 	def isRoyalFlush(self,number_list, suit_list):
 		
 		if number_list == ['10','11','12','13','14'] and self.isSameSuit(suit_list):
 			return 9
 		else:
 			return -1
+	
 	def isStraightFlush(self,number_list,suit_list):
 		new_list = []
 		for item in number_list:
@@ -84,6 +88,7 @@ class Poker:
 			return 8
 		else:
 			return -1
+	
 	def isFourKind(self,number_list,suit_list):
 		new_list = []
 		for item in number_list:
@@ -92,6 +97,7 @@ class Poker:
 			return 7
 		else:
 			return -1
+	
 	def isFullHouse(self,number_list, suit_list):
 
 		new_list = []
@@ -101,11 +107,13 @@ class Poker:
 			return 6
 		else:
 			return -1
+	
 	def isFlush(self,number_list,suit_list):
 		if self.isSameSuit(suit_list):
 			return 5
 		else:
 			return -1
+	
 	def isStraight(self,number_list,suit_list):
 		new_list = []
 		for item in number_list:
@@ -114,45 +122,50 @@ class Poker:
 			return 4
 		else:
 			return -1
+	
 	def isThreeKind(self,number_list,suit_list):
 		if number_list[0]==number_list[2] or number_list[1]==number_list[3] or number_list[2]==number_list[4]:
 			return 3
 		else:
 			return -1
+	
 	def isTwoPairs(self,number_list,suit_list):
 		if number_list[0]==number_list[1] and number_list[3]==number_list[4] or number_list[1]==number_list[2] and number_list[3]==number_list[4] or number_list[0]==number_list[1] and number_list[2]==number_list[3]:
 			return 2
 		else:
 			return -1
+	
 	def isOnePairs(self,number_list, suit_list):
 		if number_list[0]==number_list[1] or number_list[1]==number_list[2] or number_list[2]==number_list[3] or number_list[3]==number_list[4]:
 			return 1
 		else:
 			return -1
+
 	def checkWin(self):
 		def isHighest():
 			if int(self.sorted_number_list1[-1]) > int(self.sorted_number_list2[-1]):
 				return True
 			else:
 				return False
-		if self.level1 == self.level2 == 8:
+
+		if self.level1 == self.level2 in [0,8,5,4]:
 			print 'They are both StrightFlush'
 			if isHighest():
 				return 'Player1 Win'
 			else:
 				return 'Player2 Win'
-		if self.level1 == self.level2 == 5 :
-			print 'They are both Flash'
-			if isHighest():
-				return 'Player1 Win'
-			else:
-				return 'Player2 Win'
-		if self.level1 == self.level2 == 4 :
-			print 'They are both Straight'
-			if isHighest():
-				return 'Player1 Win'
-			else:
-				return 'Player2 Win'
+		# if self.level1 == self.level2 == 5 :
+		# 	print 'They are both Flash'
+		# 	if isHighest():
+		# 		return 'Player1 Win'
+		# 	else:
+		# 		return 'Player2 Win'
+		# if self.level1 == self.level2 == 4 :
+		# 	print 'They are both Straight'
+		# 	if isHighest():
+		# 		return 'Player1 Win'
+		# 	else:
+		# 		return 'Player2 Win'
 
 		if self.level1 == self.level2 == 7:
 			print 'They are both Four Kind'
@@ -182,13 +195,13 @@ class Poker:
 				return 'Player1 Win'
 			else:
 				return 'Player2 Win'
-		if self.level1 == self.level2 == 0:
-			print 'They are both High Card'
-			if isHighest():
-				return 'Player1 Win'
+		# if self.level1 == self.level2 == 0:
+		# 	print 'They are both High Card'
+		# 	if isHighest():
+		# 		return 'Player1 Win'
 
-			else:
-				return 'Player2 Win'
+		# 	else:
+		# 		return 'Player2 Win'
 
 		elif self.level1 == self.level2 == 2:
 			print 'They are two one pair'
@@ -301,20 +314,7 @@ class Poker:
 
 
 if __name__ == '__main__':
-	Player1 = '5H 5C 6S 7S KD'
-	Player2 = '2C 3S 8S 8D 9D'
-	Player3 = '10D JD KD QD AD'
-	Player4 = '4C 5C 6C 7C 8C'
-	Player5 = 'KC KD KH KS AS'
-	Player6 = '1C 1D 1H 3S 3C'
-	Player7 = '5D 8C 9S JS AC'
-	Player8 = '2C 5C 7D 8S QC'
-	Player9 = '2D 9C AS AH AC'
-	Player10 = '3D 6D 7D 9D QD'
-	Player11 = '4D 6S 9H QH QC'
-	Player12 = '3D 6D 7H QD QS'
-	Player13 = '2H 2D 4C 4D 4S'
-	Player14 = '3C 3D 3S 9S 9D'
+
 	myfile = open('p054_poker.txt')
 	player1_list = []
 	player2_list = []
