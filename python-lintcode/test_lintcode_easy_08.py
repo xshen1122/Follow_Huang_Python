@@ -9,7 +9,10 @@ target 字符串出现的第一个位置(从0开始)。如果不存在，则返�
 如果 source = "abcdabcdefg" 和 target = "bcd"，返回 1。
 '''
 def getSubStr(orignal,sub):
-	pass
+	for i in range(len(orignal)-len(sub)):
+		if orignal[i] == sub[0] and original[i:i+len(sub)] == sub:
+			return i
+	return -1
 
 if __name__ == '__main__':
 	orignal = 'source'
