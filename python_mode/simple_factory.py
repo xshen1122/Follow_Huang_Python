@@ -28,7 +28,17 @@ class Benz(car):
         self.__name=carname
     def drive(self):
         print "Drive the Benz as "+self.__name
- 
+
+#用全局函数改写工厂类        
+def driver(name):
+	if name=="BMW":
+            return BMW("BMW")
+        elif name=="Benz":
+            return Benz("Benz")
+        else:
+            raise MyInputException(name)
+
+
 class driver:
     '''Factory also called Creator'''
     def driverCar(self,name):

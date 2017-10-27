@@ -1,0 +1,81 @@
+# abstract_factory.py
+# coding: utf-8
+'''
+抽象工厂模式的用意为：给客户端提供一个接口，可以创建多个产品族中的产品对象。 
+不过使用抽象工厂是有条件的：
+
+1.系统中有多个产品族，而系统一次只可能消费其中一族产品
+
+2.同属于同一个产品族的产品在一起使用，这一约束必须在系统的设计中体现出来。 
+
+'''
+class Newcar:
+    '''Abstract Product'''
+    def drive(self):
+        pass
+ 
+class NewBMW(Newcar):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print "Drive the New BMW as "+self.__name
+ 
+class NewBenz(Newcar):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print "Drive the New Benz as "+self.__name
+ 
+class Oldcar:
+    '''Abstract Product'''
+    def drive(self):
+        pass
+ 
+class OldBMW(Oldcar):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print "Drive the Old BMW as "+self.__name
+ 
+class OldBenz(Oldcar):
+    '''Concrete Product'''
+    def __init__(self,carname):
+        self.__name=carname
+    def drive(self):
+        print "Drive the Old Benz as "+self.__name
+ 
+class driver:
+    '''Abstract Factory also called Creator'''
+    def driverNewCar(self):
+        return Newcar()
+    def driverOldCar(self):
+        return Oldcar()
+ 
+class BMWdriver(driver):
+    '''Concrete Factory or Creator'''
+    def driverNewCar(self):
+        return NewBMW("NewBMW")
+    def driverOldCar(self):
+        return OldBMW("OldBMW")
+ 
+class Benzdriver(driver):
+    '''Concrete Factory or Creator'''
+    def driverNewCar(self):
+        return NewBenz("NewBenz")
+    def driverOldCar(self):
+        return OldBenz("OldBenz")    
+
+if __name__ == "__main__":
+    driver=BMWdriver()
+    car=driver.driverNewCar()
+    car.drive()
+    car=driver.driverOldCar()
+    car.drive()
+    driver=Benzdriver()
+    car=driver.driverNewCar()
+    car.drive()
+    car=driver.driverOldCar()
+    car.drive()
