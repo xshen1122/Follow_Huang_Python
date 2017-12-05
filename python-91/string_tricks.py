@@ -8,6 +8,9 @@ String
 is :  isalnum, isdigit, isalpha, islower, isupper, isspace, istitle, 
 with: startwith, endwith
 
+sorted:
+sorted: sorted(iterable[, cmp[, key[, reverse]]])
+
 '''
 str1 = ('if you are still breathing'
 	    'it is not too late'
